@@ -10,7 +10,8 @@ public class TestFileUtil {
     }
 
     public static String getPath() {
-        return TestFileUtil.class.getResource("/").getPath();
+        //return TestFileUtil.class.getResource("/").getPath();
+        return "/Users/ozhfo/dev/easyexcel/";
     }
 
     public static File createNewFile(String pathName) {

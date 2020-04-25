@@ -485,6 +485,17 @@ public class WriteTest {
         EasyExcel.write(fileName).head(head()).sheet("模板").doWrite(dataList());
     }
 
+    /**
+     * 不创建对象的写
+     */
+    @Test
+    public void normalModelWrite() {
+        // 写法1
+        String fileName = TestFileUtil.getPath() + "noModelWrite" + System.currentTimeMillis() + ".xlsx";
+        // 这里 需要指定写用哪个class去写，然后写到第一个sheet，名字为模板 然后文件流会自动关闭
+        EasyExcel.write(fileName,NormalData.class).head(head()).sheet("模板").doWrite(normalDataList());
+    }
+
     private List<LongestMatchColumnWidthData> dataLong() {
         List<LongestMatchColumnWidthData> list = new ArrayList<LongestMatchColumnWidthData>();
         for (int i = 0; i < 10; i++) {
@@ -532,6 +543,19 @@ public class WriteTest {
             data.add("字符串" + i);
             data.add(new Date());
             data.add(0.56);
+            list.add(data);
+        }
+        return list;
+    }
+
+    private List<NormalData> normalDataList() {
+        List<NormalData> list = new ArrayList<NormalData>();
+        for (int i = 0; i < 10; i++) {
+            NormalData data = new NormalData();
+            data.setString("测试很长的字符串测试很长的字符串测试很长的字符串" + i);
+            data.setDate(new Date());
+            data.setDoubleData(1000000000000.0);
+            data.setAge(20);
             list.add(data);
         }
         return list;
